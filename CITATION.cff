@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "6N-quadratic-spectrum: Richness Spectrum of Quadratic Primes on the 6N Skeleton (Part XXXII)"
+authors:
+  - family-names: Chen
+    given-names: Ruqing
+    affiliation: "GUT Geoservice Inc., Montreal, Quebec, Canada"
+    email: ruqing@hotmail.com
+date-released: 2026-06-08
+license: MIT
+repository-code: "https://github.com/Ruqing1963/6N-quadratic-spectrum"
+abstract: >
+  Code and measured sieve data for the prime-richness of quadratic sequences on the 6N skeleton. For
+  n^2+a the shift a rotates a mod-6 mask (sealing/opening break-zones) while the Bateman-Horn richness
+  C(a) varies arithmetically; for n^2+n+A the class-number-one (Heegner) discriminants give the
+  longest dodge-corridors and the highest richness, culminating in n^2+n+41 (disc -163), which is
+  divisible by no prime below 41. Both families obey one rule: richness is the product of per-prime
+  dodges. No claim is made about the infinitude of any prime-rich polynomial.

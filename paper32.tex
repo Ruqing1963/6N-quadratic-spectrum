@@ -1,0 +1,214 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{booktabs}
+\usepackage[expansion=false]{microtype}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{3em}
+
+\theoremstyle{definition}
+\newtheorem{proposition}{Proposition}
+
+\title{\bf The Richness Spectrum of Quadratic Primes on the $6N$ Skeleton:\\
+Mask Rotation in $n^2+a$ and the Heegner Corridor of $n^2+n+A$%
+\thanks{Code and measured data: \url{https://github.com/Ruqing1963/6N-quadratic-spectrum}}}
+\author{Ruqing Chen\\
+\small GUT Geoservice Inc., Montreal, Quebec, Canada\\
+\small \texttt{ruqing@hotmail.com}}
+\date{June 8, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Part~XXIX--XXXI mapped the linear constellations and the single nonlinear sequence $n^2+1$. Here we
+vary the quadratic and read the whole family through one principle: a quadratic generates primes
+densely exactly when its discriminant \emph{dodges} the low primes---when no small $q$ can divide its
+values. We measure two families by a square-root sieve. (i) For $n^2+a$, the shift $a$ rotates a
+geometric mask: $a\bmod6$ decides which break-zones are open. We find $a\equiv1,4$ feed both wings at
+$1{:}2$; $a\equiv0,3$ seal the left zone and feed only the right; $a\equiv2,5$ seal the right and feed
+only the left. Independently of the mask, the richness
+$C(a)=\prod_q\bigl(1-\omega_a(q)/q\bigr)/(1-1/q)$ swings widely with $a$---from $0.53$ ($a=5$) to
+$1.97$ ($a=7$)---and the measured count $Q_a(N)/\!\int dt/\log(t^2{+}a)$ tracks it across the family.
+(ii) For Euler's $n^2+n+A$, the discriminant is $1-4A$, and the richness is governed by how long a
+\emph{corridor} of small primes the polynomial threads without ever being divisible. The
+class-number-one (Heegner) values $A=3,5,11,17,41$, with $4A-1=11,19,43,67,163$, give the longest
+corridors: the first prime that can divide $n^2+n+A$ is $A$ itself, and the richness climbs
+monotonically $1.02,1.88,3.26,4.17,6.64$. For $n^2+n+41$ we confirm $\omega(q)=0$ for \emph{every}
+prime $q\le37$---it dodges all of them---while a non-Heegner neighbour is divisible already at $q=3$.
+The two families are one phenomenon: prime richness is the product of per-prime dodges, and the
+class-number-one discriminants are the champion dodgers, with $-163$ the largest. None of this is new
+as theory---Rabinowitsch, Heegner--Stark--Baker, and Bateman--Horn settled it---and we make no claim
+about the infinitude of any prime-rich polynomial. As throughout, this is a measurement, not a theorem.
+\end{abstract}
+
+\section{Introduction}
+With $n^2+1$ (Part~XXXI \cite{PXXXI}) the programme left the linear world---twin shifts, Goldbach
+sums, the arithmetic progressions of Part~XXX \cite{PXXX}---for its first quadratic. A single sequence,
+though, only hints at the structure. The richness of $n^2+1$ came from a constant $C=1.37281$ built
+from local factors that split the primes by the character of $-1$. Change the quadratic and that
+constant moves. This paper varies it deliberately, across two families, and finds that one idea
+organises both: a quadratic is prime-rich exactly insofar as its discriminant is a non-residue modulo
+the small primes, so that those primes are \emph{forbidden} to divide its values and act as
+enhancements rather than sieves.
+
+That a polynomial can dodge the low primes is the old observation behind Euler's
+$n^2+n+41$, prime for $n=0,\dots,39$. Rabinowitsch \cite{Rab} tied this to the class number, and the
+Heegner--Stark--Baker theorem \cite{Heegner,Stark,Baker} fixed the complete list of imaginary
+quadratic discriminants of class number one, the largest being $-163$. The conjectural counts are the
+Bateman--Horn specialisation of Hardy--Littlewood \cite{HL,BH}. None of this is ours. What we add is
+the $6N$ reading: the shift $a$ as a rotation of the break-zone mask, the discriminant as the setting
+of a dodge-corridor, and a clean high-precision measurement of the resulting richness spectrum via a
+square-root sieve. We touch no infinitude question.
+
+\section{Setup: discriminant, dodging, and the local factor}
+For a quadratic $f$ and a prime $q$, let $\omega(q)$ be the number of roots of $f\equiv0\pmod q$. A
+prime can divide the values of $f$ only when $\omega(q)>0$, which for $q\nmid\mathrm{disc}(f)$ happens
+exactly when $\mathrm{disc}(f)$ is a quadratic residue mod $q$. The Bateman--Horn richness is the
+product of local factors
+\begin{equation}
+C=\prod_q g(q),\qquad g(q)=\frac{1-\omega(q)/q}{1-1/q},
+\label{eq:C}
+\end{equation}
+and $Q(N):=\#\{n\le N: f(n)\ \text{prime}\}\sim C\int_2^N dt/\log f(t)$. The factor $g(q)$ is the whole
+story: where $f$ \emph{cannot} be divided ($\omega=0$) it reads $q/(q-1)>1$, an \emph{enhancement}, a
+dodged prime; where $f$ is divisible on two residues it reads $(q-2)/(q-1)<1$, a \emph{suppression}.
+Richness is a tug-of-war between dodged and hit primes, and a discriminant that is a non-residue mod
+many small $q$ wins it. We enumerate by a square-root sieve on $n$: for each $q$ with $\omega(q)>0$ we
+solve $f(n)\equiv0$ and strike the offending residues, leaving the primes; here $n^2+a$ uses
+$n\equiv\pm\sqrt{-a}$, and $n^2+n+A$ uses $(2n+1)^2\equiv1-4A$.
+
+\section{The shift $a$ rotates the mask: $n^2+a$}
+Modulo $6$ the squares are $n^2\in\{0,1,3,4\}$ (at $n\equiv0;\ \pm1;\ 3;\ \pm2$), so $n^2+a$ lands in a
+break-zone ($\equiv\pm1\bmod6$) only for some residues of $n$, and which ones depends on $a\bmod6$.
+The result (Table~\ref{tab:mask}) is a rotating mask:
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{clll}
+\toprule
+$a\bmod6$ & open wings & active $n\bmod6$ & example richness $C(a)$\\
+\midrule
+$1$ & both, right:left $=1{:}2$ & $0\,(\mathrm{R}),\,2,4\,(\mathrm{L})$ & $a{=}1{:}\,1.37,\ a{=}7{:}\,1.97,\ a{=}13{:}\,1.29$\\
+$4$ & both, right:left $=1{:}2$ & $3\,(\mathrm{R}),\,1,5\,(\mathrm{L})$ & $a{=}4{:}\,1.37,\ a{=}{-}2{:}\,1.85$\\
+$3$ & right only (left sealed)  & $2,4\,(\mathrm{R})$ & $a{=}3{:}\,1.12$\\
+$0$ & right only (left sealed)  & $1,5\,(\mathrm{R})$ & $a{=}6{:}\,0.71$\\
+$2$ & left only (right sealed)  & $3\,(\mathrm{L})$ & $a{=}2{:}\,0.71$\\
+$5$ & left only (right sealed)  & $0\,(\mathrm{L})$ & $a{=}5{:}\,0.53,\ a{=}11{:}\,0.51$\\
+\bottomrule
+\end{tabular}
+\caption{The mod-$6$ mask for $n^2+a$. The shift seals or opens the break-zones; $a\equiv1,4$ reproduce
+the $1{:}2$ wing split of $n^2+1$, while $a\equiv2,5$ and $a\equiv0,3$ extinguish one wing entirely.}
+\label{tab:mask}
+\end{table}
+
+The mask sets \emph{which} zones are populated; the richness $C(a)$ of~\eqref{eq:C} sets \emph{how
+densely}, and the two are independent. Figure~\ref{fig:fig1}(A) shows $C(a)$ over $a=-3,\dots,48$,
+coloured by mask: the same green ``both-wing'' mask carries values from $1.0$ to $2.3$, and the
+sealed-wing masks span $0.5$ to $1.2$. The richness is a genuine arithmetic spectrum riding on top of
+the geometric mask. It is no fit: feeding the local product~\eqref{eq:C} into Bateman--Horn predicts
+the measured counts across the whole family to a fraction of a percent (Fig.~\ref{fig:fig1}(B);
+$a=7$ gives measured $1.975$ against predicted $1.973$, $a=5$ gives $0.531$ against $0.528$). The
+degenerate $a=-1$, where $n^2-1=(n-1)(n+1)$ factors, has $C\to0$, the product correctly foreseeing the
+algebraic collapse.
+
+\section{The corridor of $n^2+n+A$ and the Heegner ladder}
+Euler's quadratic has discriminant $1-4A$, and its values never leave the break-zones:
+$n(n+1)+A\equiv\pm1\pmod6$ for all $n$ when $A$ is odd, so $2$ and $3$ never divide it. The deeper fact
+is how far this dodging runs. For $A=41$ the discriminant is $-163$, and we confirm by direct root
+count that $\omega(q)=0$ for \emph{every} prime $q\le37$: the polynomial threads a corridor past all
+eleven of them and is first divisible at $q=41$ (Fig.~\ref{fig:fig2}(A), shaded). A non-Heegner
+neighbour such as $n^2+n+9$ (discriminant $-35$) is already divisible at $q=3$.
+
+This is the class-number-one phenomenon. Rabinowitsch's criterion makes $n^2+n+A$ prime for
+$n=0,\dots,A-2$ precisely when $1-4A$ has class number one; the Heegner--Stark--Baker list then forces
+$A\in\{3,5,11,17,41\}$ (with $4A-1=11,19,43,67,163$). For each, the first prime that can divide is $A$
+itself---$f(A-1)=A^2$---so the corridor length grows with $A$, and with it the richness
+(Table~\ref{tab:ladder}, Fig.~\ref{fig:fig2}(B)): the measured $C$ climbs monotonically
+$1.02,1.88,3.26,4.17,6.64$, topping out at $n^2+n+41$. The non-Heegner values sit well below, and
+$n^2+n+7$ (discriminant $-27=9\cdot(-3)$) lands exactly on $n^2+n+1$ (discriminant $-3$), as it must,
+the two sharing a character class.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{rrccc}
+\toprule
+$A$ & disc $1-4A$ & class no.\ $1$ & first prime $\mid f$ & measured $C$\\
+\midrule
+3  & $-11$  & yes & 3  & 1.018\\
+5  & $-19$  & yes & 5  & 1.883\\
+11 & $-43$  & yes & 11 & 3.262\\
+17 & $-67$  & yes & 17 & 4.174\\
+41 & $-163$ & yes & 41 & 6.637\\
+\midrule
+9  & $-35$  & no  & 3  & 0.927\\
+21 & $-83$  & no  & 3  & 0.970\\
+33 & $-131$ & no  & 3  & 0.659\\
+\bottomrule
+\end{tabular}
+\caption{The class-number-one ladder for $n^2+n+A$. For the Heegner values the first divisor is $A$
+itself and the richness rises to $6.64$ at $n^2+n+41$; non-Heegner values are divisible at $3$ and
+stay poor.}
+\label{tab:ladder}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{p32_fig1.pdf}
+\caption{(A) The $a$-spectrum of $n^2+a$: richness $C(a)$ versus shift $a$, coloured by the mod-$6$
+mask (both-wing, right-only, left-only). The geometric mask and the arithmetic richness are
+independent. (B) The local product~\eqref{eq:C} against the measured count for representative $a$, on
+the diagonal: Bateman--Horn holds across the family.}
+\label{fig:fig1}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{p32_fig2.pdf}
+\caption{(A) The Heegner corridor: $\omega(q)$ for $n^2+n+41$ (disc $-163$) is zero for every prime
+$q\le37$ (shaded), first nonzero at $q=41$, while $n^2+n+9$ (disc $-35$) is divisible already at small
+$q$. (B) The richness $C$ versus $A$: the class-number-one values (Heegner) climb to $6.64$ at
+$n^2+n+41$; non-Heegner values sit below.}
+\label{fig:fig2}
+\end{figure}
+
+\FloatBarrier
+\section{Scope and honest ledger}
+Two families, one principle. The shift $a$ in $n^2+a$ rotates a mod-$6$ mask that opens or seals the
+break-zones---$a\equiv1,4$ feeding both at $1{:}2$, $a\equiv2,5$ and $a\equiv0,3$ extinguishing a
+wing---while the richness $C(a)$ rides independently on top, swinging from $0.53$ to nearly $2$ as the
+discriminant $-4a$ dodges more or fewer small primes. The shift $A$ in $n^2+n+A$ sets the length of a
+clean corridor: the class-number-one discriminants thread the most primes, first divisible at $A$
+itself, and the richness climbs monotonically to $6.64$ at the Heegner champion $-163$. Both are the
+same statement about the local factor $g(q)$: prime richness is the product of dodged primes against
+hit primes.
+
+We are explicit about the boundary. The mask is elementary; the local factors, the constant $C$, and
+the Bateman--Horn asymptotic are classical; the class-number-one criterion is Rabinowitsch's and the
+finiteness of the Heegner list is the Heegner--Stark--Baker theorem. What this paper contributes is the
+$6N$ geometric reading---mask rotation and wing sealing, the corridor as a run of dodged annihilation
+channels---and a high-precision measurement of the richness spectrum across both families via the
+square-root sieve. We make no claim about the infinitude of primes of any of these forms; that lies
+beyond every finite computation, and the counts we report would look the same whatever the truth.
+Everything here equals the discrete sieve count, takes the Hardy--Littlewood heuristic as input, and
+makes no claim about the infinitude of any sequence.
+
+\paragraph{Data and code availability.} The square-root sieves for $n^2+a$ and $n^2+n+A$, the richness
+scan, the Heegner-family counts, the corridor root-counts, and the figure scripts are openly available
+at \url{https://github.com/Ruqing1963/6N-quadratic-spectrum}.
+
+\begin{thebibliography}{9}
+\bibitem{HL} G.~H.~Hardy, J.~E.~Littlewood, \emph{Some problems of `Partitio Numerorum'; III}, Acta Math.\ \textbf{44} (1923), 1--70.
+\bibitem{Rab} G.~Rabinowitsch, \emph{Eindeutigkeit der Zerlegung in Primzahlfaktoren in quadratischen Zahlk\"orpern}, J.\ Reine Angew.\ Math.\ \textbf{142} (1913), 153--164.
+\bibitem{Heegner} K.~Heegner, \emph{Diophantische Analysis und Modulfunktionen}, Math.\ Z.\ \textbf{56} (1952), 227--253.
+\bibitem{Stark} H.~M.~Stark, \emph{A complete determination of the complex quadratic fields of class-number one}, Michigan Math.\ J.\ \textbf{14} (1967), 1--27.
+\bibitem{Baker} A.~Baker, \emph{Linear forms in the logarithms of algebraic numbers}, Mathematika \textbf{13} (1966), 204--216.
+\bibitem{BH} P.~T.~Bateman, R.~A.~Horn, \emph{A heuristic asymptotic formula concerning the distribution of prime numbers}, Math.\ Comp.\ \textbf{16} (1962), 363--367.
+\bibitem{PXXX} R.~Chen, \emph{Prime arithmetic progressions as a lattice resonance} (Part XXX), Zenodo, doi:10.5281/zenodo.20598405 (2026).
+\bibitem{PXXXI} R.~Chen, \emph{Primes of the form $n^2+1$ on the 6N skeleton: the wing decomposition and the character spectrum of the Landau--Shanks constant} (Part XXXI), Zenodo, doi:10.5281/zenodo.20600655 (2026).
+\bibitem{review} R.~Chen, \emph{Arithmetic geodynamics on the 6N skeleton: a review of Parts I--XIX}, Zenodo, doi:10.5281/zenodo.20585301 (2026).
+\end{thebibliography}
+
+\end{document}
