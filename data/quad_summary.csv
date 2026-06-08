@@ -1,0 +1,8 @@
+parameter,value
+Nmax,3000000
+euler_A41_disc,-163
+euler_A41_first_divisor,41
+euler_A41_Q,720037
+euler_A41_C_empirical,6.6372
+euler_A41_right_over_left,0.4996
+corridor_all_q_le_37_omega,0 (n^2+n+41 dodges every prime below 41)
